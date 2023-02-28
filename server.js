@@ -6,7 +6,7 @@ const cTable = require('console.table');
 
 const db = mysql.createConnection(
     {
-        host: 'local host',
+        host: 'localhost',
         user: 'root',
         password: 'shannonSQL72',
         database: 'employee_tracker_db'
@@ -144,7 +144,7 @@ const addRole = () => {
                 let deptID = answer[0].map(obj => obj.id);
                 return deptID[0]
             }).then((deptID) => {
-                db.promise().query(`INSERT INTO roles (title, salary, department_id) VALUES (?,?,?)`, [answers.roleName, answers.roleSalary, deptID], (err,results) => {
+                db.promise().query(`INSERT INTO roles(title, salary, department_id) VALUES (?,?,?)`, [answers.roleName, answers.roleSalary, deptID], (err,results) => {
                     if (err) throw err;
                     viewOptions();
                 })
@@ -235,3 +235,5 @@ const updateEmpRole = () => {
             })
     })
 }
+
+init();
